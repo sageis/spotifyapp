@@ -18,38 +18,37 @@ private static int getIntStartIndex(String s, int tail){
 }
 
 private static String decodeString(String s) {
-		int SENTINEL = -1; 
-		int strbracket = SENTINEL;
-		int endbracket = SENTINEL;
-		int bracketbal = 0; 
+	int SENTINEL = -1; 
+	int strbracket = SENTINEL;
+	int endbracket = SENTINEL;
+	int bracketbal = 0; 
 
-		for (int i = 0; i<s.length(); i++){
+	for (int i = 0; i<s.length(); i++){
 
-			if (s.charAt(i) == '[') {
-				if (strbracket == SENTINEL) strbracket = i; 
-				bracketbal++; 
-			}
-
-			if (s.charAt(i) == ']'&& strbracket != SENTINEL) {
-				bracketbal--;
-				if (bracketbal == 0) {
-					endbracket = i;
-
-					int repsstrt = getIntStartIndex(s,strbracket);
-					int reps = Integer.parseInt(s.substring(repsstrt,strbracket));
-
-					return s.substring(0,repsstrt) + 
-					duplicateString(decodeString(s.substring(strbracket+1,endbracket)), reps) + 
-					decodeString(s.substring(endbracket+1,s.length()));
-
-				} 
-			}
+		if (s.charAt(i) == '[') {
+			if (strbracket == SENTINEL) strbracket = i; 
+			bracketbal++; 
 		}
 
-		if (bracketbal > 0) {
-			System.out.println("ERROR: Improper Format. Missing ']' ! ");
-		} else if (bracketbal < 0) {
-			System.out.println("ERROR: Improper Format. Missing '[' ! ");
+		if (s.charAt(i) == ']'&& strbracket != SENTINEL) {
+			bracketbal--;
+			if (bracketbal == 0) {
+				endbracket = i;
+
+				int repsstrt = getIntStartIndex(s,strbracket);
+				int reps = Integer.parseInt(s.substring(repsstrt,strbracket));
+
+				return s.substring(0,repsstrt) + 
+				duplicateString(decodeString(s.substring(strbracket+1,endbracket)), reps) + 
+				decodeString(s.substring(endbracket+1,s.length()));
+			} 
 		}
-		return s;
+	}
+
+	if (bracketbal > 0) {
+		System.out.println("ERROR: Improper Format. Missing ']' ! ");
+	} else if (bracketbal < 0) {
+		System.out.println("ERROR: Improper Format. Missing '[' ! ");
+	}
+	return s;
 }
