@@ -8,6 +8,7 @@ private static String sortByString(String s, String t) {
 	s = s.toLowerCase();
 	t = t.toLowerCase();
 
+
 	//Iterate over S string and map substrings by character
 	for (int i = 0; i < s.length(); i++){
 		char ch=s.charAt(i);
@@ -24,7 +25,7 @@ private static String sortByString(String s, String t) {
 	for (int i = 0; i < t.length(); i++) {
 		char ch = t.charAt(i);
 
-		// if there are letters in s have that are not in t they will not be output because they are not in t alphabet
+		// if there are letters in s have that are not in t they will not be outputted because they are not in t alphabet
 		if (organizer.containsKey(ch)) {
 			returnVal += organizer.get(ch);
 		}
