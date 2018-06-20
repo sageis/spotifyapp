@@ -1,20 +1,20 @@
 //Returns a string repeated reps number of times
 private static String duplicateString(String s, int reps) {
-  String returnString = "";
-  for (int i = 0; i < reps; i++){
-    returnString += s;
-  }
-  return returnString; 
+	String returnString = "";
+	for (int i = 0; i < reps; i++){
+		returnString += s;
+	}
+	return returnString; 
 }
 
 //Given the last index of an int value string, returns the start index of int
 private static int getIntStartIndex(String s, int tail){
-  for (int i=tail-1; i >= 0; i--){
-    if (!Character.isDigit(s.charAt(i))){
-      return i+1; 
-    }
-  }
-  return 0; 
+	for (int i=tail-1; i >= 0; i--){
+		if (!Character.isDigit(s.charAt(i))){
+			return i+1; 
+		}
+	}
+	return 0; 
 }
 
 private static String decodeString(String s) {
@@ -41,6 +41,7 @@ private static String decodeString(String s) {
 				return s.substring(0,repsstrt) + 
 				duplicateString(decodeString(s.substring(strbracket+1,endbracket)), reps) + 
 				decodeString(s.substring(endbracket+1,s.length()));
+
 			} 
 		}
 	}
